@@ -5,6 +5,11 @@ import {
   GraphQLInt
 } from 'graphql/type';
 
+
+import R from 'ramda';
+console.log(R.add(2, 3)); // test ramda
+
+
 let count = 0;
 
 let schema = new GraphQLSchema({

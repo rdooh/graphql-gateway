@@ -5,7 +5,15 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
 var _graphqlType = require('graphql/type');
+
+var _ramda = require('ramda');
+
+var _ramda2 = _interopRequireDefault(_ramda);
+
+console.log(_ramda2['default'].add(2, 3)); // test ramda
 
 var count = 0;
 
