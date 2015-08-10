@@ -1,0 +1,32 @@
+{
+  "name": "graphql-gateway",
+  "version": "0.0.1",
+  "description": "A test project to create an api gateway-like server app that uses graphql to front end a collection of microservices",
+  "main": "dist/app.js",
+  "dependencies": {
+    "babel": "^5.8.21",
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3",
+    "graphql": "^0.2.6"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rdooh/graphql-gateway.git"
+  },
+  "keywords": [
+    "graphql"
+  ],
+  "author": "Rob Dooh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rdooh/graphql-gateway/issues"
+  },
+  "homepage": "https://github.com/rdooh/graphql-gateway#readme"
+}

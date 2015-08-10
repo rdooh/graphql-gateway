@@ -8,5 +8,11 @@ I'm going to try a few things here, to see if I can prototype something akin to 
 - return modified introspection results
 - route queries to trivial underlying services
 
+### Progress
+Just popped a basic example from [Clay Allsopp](https://medium.com/@clayallsopp/your-first-graphql-server-3c766ab4f0a2) - that's all for the moment.
+
+### Run it
+`node dist/app.js` should do the trick
+
 ### And Then....
 We'll see where we're at.
