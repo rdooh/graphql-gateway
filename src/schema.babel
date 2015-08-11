@@ -2,7 +2,9 @@
 import {
   GraphQLObjectType,
   GraphQLSchema,
-  GraphQLInt
+  GraphQLInt,
+  GraphQLString,
+  GraphQLNonNull
 } from 'graphql/type';
 
 
@@ -12,29 +14,62 @@ import R from 'ramda';
 let count = 0;
 
 // Some simple permission set
-let permissions = ['read','write','getScore'];
+let permissions = ['read','write','ownProjects','getClientContacts'];
+
+
+
+let projectType = new GraphQLObjectType({
+  name: 'Project',
+  description: 'The project resource(s)',
+  fields: () => ({
+    id: {
+      type: new GraphQLNonNull(GraphQLString),
+      description: 'The id of the project.',
+    }
+  })
+});
+
+
+
+let clientType = new GraphQLObjectType({
+  name: 'Client',
+  type: GraphQLString,
+  description: 'Some client resource',
+  resolve: function() {
+    return 'arbitrary client data';
+  }
+});
+
 
 // The extracted schema object
 let schemaObject = {
-  query: new GraphQLObjectType({
-    name: 'RootQueryType',
-    fields: {
-      count: {
-        type: GraphQLInt,
-        description: 'the count',
-        resolve: function() {
-          return count;
-        }
-      },
-      score: {
-        type: GraphQLInt,
-        description: 'the score',
-        resolve: function() {
-          return count;
-        }
+  query: new GraphQLObjectType(
+    {
+      name: 'RootQueryType',
+      fields: {
+        count: {
+          type: GraphQLInt,
+          description: 'the count',
+          resolve: function() {
+            return count;
+          }
+        },
+        project: {
+          type:projectType,
+          args: {
+            id: {
+              description: 'id of the human',
+              type: new GraphQLNonNull(GraphQLString)
+            }
+          },
+          resolve: function() {
+            return 'arbitrary project data';
+          }
+        },
+        client: clientType
       }
     }
-  }),
+  ),
   mutation: new GraphQLObjectType({
     name: 'RootMutationType',
     fields: {

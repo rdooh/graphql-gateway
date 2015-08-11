@@ -18,7 +18,29 @@ var _ramda2 = _interopRequireDefault(_ramda);
 var count = 0;
 
 // Some simple permission set
-var permissions = ['read', 'write', 'getScore'];
+var permissions = ['read', 'write', 'ownProjects', 'getClientContacts'];
+
+var projectType = new _graphqlType.GraphQLObjectType({
+  name: 'Project',
+  description: 'The project resource(s)',
+  fields: function fields() {
+    return {
+      id: {
+        type: new _graphqlType.GraphQLNonNull(_graphqlType.GraphQLString),
+        description: 'The id of the project.'
+      }
+    };
+  }
+});
+
+var clientType = new _graphqlType.GraphQLObjectType({
+  name: 'Client',
+  type: _graphqlType.GraphQLString,
+  description: 'Some client resource',
+  resolve: function resolve() {
+    return 'arbitrary client data';
+  }
+});
 
 // The extracted schema object
 var schemaObject = {
@@ -32,13 +54,19 @@ var schemaObject = {
           return count;
         }
       },
-      score: {
-        type: _graphqlType.GraphQLInt,
-        description: 'the score',
+      project: {
+        type: projectType,
+        args: {
+          id: {
+            description: 'id of the human',
+            type: new _graphqlType.GraphQLNonNull(_graphqlType.GraphQLString)
+          }
+        },
         resolve: function resolve() {
-          return count;
+          return 'arbitrary project data';
         }
-      }
+      },
+      client: clientType
     }
   }),
   mutation: new _graphqlType.GraphQLObjectType({
