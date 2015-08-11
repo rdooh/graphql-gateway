@@ -7,12 +7,15 @@ import {
 
 
 import R from 'ramda';
-console.log(R.add(2, 3)); // test ramda
-
+//console.log(R.add(2, 3)); // test ramda
 
 let count = 0;
 
-let schema = new GraphQLSchema({
+// Some simple permission set
+let permissions = ['read','write','getScore'];
+
+// The extracted schema object
+let schemaObject = {
   query: new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
@@ -45,6 +48,15 @@ let schema = new GraphQLSchema({
       }
     }
   })
-});
+};
+
+
+
+
+
+
+
+
+let schema = new GraphQLSchema(schemaObject);
 
 export default schema;

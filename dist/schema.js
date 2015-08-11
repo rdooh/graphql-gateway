@@ -13,11 +13,15 @@ var _ramda = require('ramda');
 
 var _ramda2 = _interopRequireDefault(_ramda);
 
-console.log(_ramda2['default'].add(2, 3)); // test ramda
+//console.log(R.add(2, 3)); // test ramda
 
 var count = 0;
 
-var schema = new _graphqlType.GraphQLSchema({
+// Some simple permission set
+var permissions = ['read', 'write', 'getScore'];
+
+// The extracted schema object
+var schemaObject = {
   query: new _graphqlType.GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
@@ -50,7 +54,9 @@ var schema = new _graphqlType.GraphQLSchema({
       }
     }
   })
-});
+};
+
+var schema = new _graphqlType.GraphQLSchema(schemaObject);
 
 exports['default'] = schema;
 module.exports = exports['default'];
