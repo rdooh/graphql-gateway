@@ -26,8 +26,12 @@ var projectType = new _graphqlType.GraphQLObjectType({
   fields: function fields() {
     return {
       id: {
-        type: new _graphqlType.GraphQLNonNull(_graphqlType.GraphQLString),
+        type: _graphqlType.GraphQLInt,
         description: 'The id of the project.'
+      },
+      name: {
+        type: _graphqlType.GraphQLString,
+        description: 'The name of the project.'
       }
     };
   }
@@ -59,11 +63,13 @@ var schemaObject = {
         args: {
           id: {
             description: 'id of the human',
-            type: new _graphqlType.GraphQLNonNull(_graphqlType.GraphQLString)
+            type: _graphqlType.GraphQLInt
           }
         },
-        resolve: function resolve() {
-          return 'arbitrary project data';
+        resolve: function resolve(root, _ref) {
+          var id = _ref.id;
+
+          return { id: id, name: 'test' };
         }
       },
       client: clientType

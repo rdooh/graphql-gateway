@@ -23,8 +23,12 @@ let projectType = new GraphQLObjectType({
   description: 'The project resource(s)',
   fields: () => ({
     id: {
-      type: new GraphQLNonNull(GraphQLString),
+      type: GraphQLInt,
       description: 'The id of the project.',
+    },
+    name: {
+      type: GraphQLString,
+      description: 'The name of the project.',
     }
   })
 });
@@ -59,11 +63,11 @@ let schemaObject = {
           args: {
             id: {
               description: 'id of the human',
-              type: new GraphQLNonNull(GraphQLString)
+              type: GraphQLInt
             }
           },
-          resolve: function() {
-            return 'arbitrary project data';
+          resolve: (root, {id}) => {
+            return {id:id,name:'test'}
           }
         },
         client: clientType
